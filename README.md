@@ -43,7 +43,7 @@ piping xml file to command
 $ cat "$HOME/.config/libvirt/qemu/dsl-2024-rc7-2024-12-03.xml" | virt-qemu-cmd
 ```
 
-using virsh sommand and the domain name:
+using virsh dumpxml command and the domain name to pipe into command:
 ```
 $ virsh dumpxml 'dsl-2024-rc7-2024-12-03' | virt-qemu-cmd
 ```
