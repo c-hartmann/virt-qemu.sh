@@ -13,8 +13,37 @@ $ chmod +x $HOME/.local/bin/virt-qemu
 $ cp config/virt-qemu.xsl $HOME/.config/
 ```
 
-## usage
+## basic usage
 
 ```
-$ virt-qemu <domain-name | libvirt-xml-config-file> 
+$ virt-qemu <domain-name> | <libvirt-xml-config-file>
+```
+
+## example usages
+
+assuming domain name is: 'dsl-2024-rc7-2024-12-03'
+
+with full domain name
+```
+$ virt-qemu 'dsl-2024-rc7-2024-12-03'
+```
+
+with (user session) xml path
+```
+$ virt-qemu "$HOME/.config/libvirt/qemu/dsl-2024-rc7-2024-12-03.xml'
+```
+
+with partial domain name (first matching)
+```
+$ virt-qemu 'dsl-2024-rc7-'
+```
+
+piping xml file to command
+```
+$ cat "$HOME/.config/libvirt/qemu/dsl-2024-rc7-2024-12-03.xml' | virt-qemu
+```
+
+using virsh sommand and the domain name:
+```
+$ virsh dumpxml 'dsl-2024-rc7-2024-12-03.xml' | virt-qemu
 ```
