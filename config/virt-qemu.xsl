@@ -93,7 +93,8 @@
 		<xsl:text> -boot c </xsl:text>
 	</xsl:template>
 
-	<xsl:template match="os/boot[@dev='cdrom']"><!-- valid attribute? -->
+	<!-- 'cdrom' a valid attribute? -->
+	<xsl:template match="os/boot[@dev='cdrom']">
 		<xsl:text> -boot d </xsl:text>
 	</xsl:template>
 
@@ -107,6 +108,8 @@
 				<xsl:copy-of select="$id" />
 				<xsl:text> -device virtio-net-pci,netdev=</xsl:text>
 				<xsl:copy-of select="$id" />
+			</xsl:if>
+			<xsl:if test="@type='bridge'">
 			</xsl:if>
 	</xsl:template>-->
 
