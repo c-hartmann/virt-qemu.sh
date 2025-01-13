@@ -25,60 +25,60 @@
 		<xsl:apply-templates/>
 	</xsl:template>
 
-    <xsl:template match="name">
+	<xsl:template match="name">
 		<xsl:text> -name </xsl:text>
 		<xsl:value-of select="."/>
 	</xsl:template>
 
-    <xsl:template match="uuid">
+	<xsl:template match="uuid">
 		<xsl:text> -uuid </xsl:text>
 		<xsl:value-of select="."/>
 	</xsl:template>
 
 	<!-- allowed to use -m option twice? -->
-    <xsl:template match="memory">
+	<xsl:template match="memory">
 		<xsl:text> -m maxmem=</xsl:text>
 		<xsl:value-of select="."/>
 		<xsl:text>K</xsl:text>
 	</xsl:template>
 
-    <xsl:template match="currentMemory">
+	<xsl:template match="currentMemory">
 		<xsl:text> -m size=</xsl:text>
 		<xsl:value-of select="."/>
 		<xsl:text>K</xsl:text>
 	</xsl:template>
 
-    <xsl:template match="os/type[@arch='x86_64']">
+	<xsl:template match="os/type[@arch='x86_64']">
 		<xsl:text> -machine </xsl:text>
 		<xsl:value-of select="@machine"/>
 	</xsl:template>
 
-    <xsl:template match="vcpu">
+	<xsl:template match="vcpu">
 		<!-- cpus or cores? -->
 		<xsl:text> -smp cpus=</xsl:text>
 		<xsl:value-of select="."/>
 	</xsl:template>
 
-    <xsl:template match="cpu">
+	<xsl:template match="cpu">
 		<xsl:if test="@mode='host-passthrough'">
 			<xsl:text> -cpu host </xsl:text>
 		</xsl:if>
 	</xsl:template>
 
 	<!-- for each here? -->
-    <xsl:template match="devices/disk[@device='disk']/source">
+	<xsl:template match="devices/disk[@device='disk']/source">
 		<xsl:text> -hda </xsl:text>
 		<xsl:value-of select="@file"/>
 	</xsl:template>
 
-    <xsl:template match="devices/disk[@device='cdrom']/source">
+	<xsl:template match="devices/disk[@device='cdrom']/source">
 		<xsl:text> -cdrom </xsl:text>
 		<xsl:value-of select="@file"/>
 		<xsl:text> </xsl:text>
 	</xsl:template>
 
 	<!-- allowed to use -boot option twice? -->
-    <xsl:template match="os/bootmenu">
+	<xsl:template match="os/bootmenu">
 		<xsl:choose>
 			<xsl:when test="@enable='yes'">
 				<xsl:text> -boot menu=on </xsl:text>
@@ -89,11 +89,11 @@
 		</xsl:choose>
 	</xsl:template>
 
-    <xsl:template match="os/boot[@dev='hd']">
+	<xsl:template match="os/boot[@dev='hd']">
 		<xsl:text> -boot c </xsl:text>
 	</xsl:template>
 
-    <xsl:template match="os/boot[@dev='cdrom']"><!-- valid attribute? -->
+	<xsl:template match="os/boot[@dev='cdrom']"><!-- valid attribute? -->
 		<xsl:text> -boot d </xsl:text>
 	</xsl:template>
 
@@ -110,7 +110,7 @@
 			</xsl:if>
 	</xsl:template>-->
 
-    <xsl:template match="sound">
+	<xsl:template match="sound">
 		<xsl:choose>
 			<xsl:when test="@model='ich9'">
 <!--					<xsl:text> -device ich9-intel-hda,id=snd0 </xsl:text>
