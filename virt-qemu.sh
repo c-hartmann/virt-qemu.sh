@@ -15,14 +15,11 @@ function error_exit()
 }
 
 # check xsltproc
-type -p xsltproc || error_exit "xsltproc command not found" 1
-# test -x "$xsltproc" || error_exit "xsltproc command not found" 1
+type -p xsltproc 1>/dev/null 2>&1|| error_exit "xsltproc command not found" 1
 
 # check stylesheet
 stylesheet="$HOME/.config/${_me%.*}.xsl"
 test -f "$stylesheet" || error_exit "stylesheet file not found: $stylesheet" 2
-echo using: "$stylesheet"
-# exit
 
 # command line paramter is either a vm name or libvirt xml config file
 libvirt_config=""
