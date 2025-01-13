@@ -30,7 +30,7 @@ $ virt-qemu-cmd 'dsl-2024-rc7-2024-12-03'
 
 with (user session) xml path
 ```
-$ virt-qemu "$HOME/.config/libvirt/qemu/dsl-2024-rc7-2024-12-03.xml"
+$ virt-qemu-cmd "$HOME/.config/libvirt/qemu/dsl-2024-rc7-2024-12-03.xml"
 ```
 
 with partial domain name (first matching)
