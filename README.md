@@ -15,7 +15,7 @@ $ chmod +x $HOME/.local/bin/virt-qemu
 # copy:
 $ cp config/virt-qemu-cmd.xsl $HOME/.config/
 # link:
-$ WD=$PWD; cd config/virt-qemu-cmd.xsl $HOME/.config/; ln -s "$WD/config/virt-qemu-cmd.xsl" .; cd -
+$ WD=$PWD; cd $HOME/.config/; ln -s "$WD/config/virt-qemu-cmd.xsl" .; cd -
 ```
 
 ## basic usage
