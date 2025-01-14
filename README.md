@@ -9,8 +9,13 @@ from inside this repository:
 ```
 # copy the script into some directory contained in your PATH ($HOME/.local/bin/ here)
 $ cp virt-qemu-cmd.sh $HOME/.local/bin/virt-qemu-cmd
+# make it executable
 $ chmod +x $HOME/.local/bin/virt-qemu
+# either copy or link the stylesheet..
+# copy:
 $ cp config/virt-qemu-cmd.xsl $HOME/.config/
+# link:
+$ WD=$PWD; cd config/virt-qemu-cmd.xsl $HOME/.config/; ln -s "$WD/config/virt-qemu-cmd.xsl" .; cd -
 ```
 
 ## basic usage
