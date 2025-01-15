@@ -13,9 +13,9 @@ $ cp virt-qemu-cmd.sh $HOME/.local/bin/virt-qemu-cmd
 $ chmod +x $HOME/.local/bin/virt-qemu
 # either copy or link the stylesheet..
 # copy:
-$ cp config/virt-qemu-cmd.xsl $HOME/.local/share/
+$ cp share/virt-qemu-cmd.xsl $HOME/.local/share/
 # link:
-$ CD=$PWD; cd $HOME/.local/share/ ; ln -s "$CD/config/virt-qemu-cmd.xsl" . ; cd -
+$ CD=$PWD; cd $HOME/.local/share/ ; ln -s "$CD/share/virt-qemu-cmd.xsl" . ; cd -
 ```
 
 ## basic usage
