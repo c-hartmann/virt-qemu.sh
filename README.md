@@ -21,7 +21,7 @@ $ CD=$PWD; cd $HOME/.config/; ln -s "$CD/config/virt-qemu-cmd.xsl" .; cd -
 ## basic usage
 
 ```
-$ virt-qemu-cmd <domain-name> | <libvirt-xml-config-file>
+$ virt-qemu-cmd [ --help | --no-validate | --run ] <domain-name> | <libvirt-domain-config-file>
 ```
 
 ## example usages
@@ -52,3 +52,14 @@ using virsh dumpxml command and the domain name to pipe into command:
 ```
 $ virsh dumpxml 'dsl-2024-rc7-2024-12-03' | virt-qemu-cmd
 ```
+
+do not validate domain xml config file before parsing
+```
+$ virt-qemu-cmd --no-validate 'dsl-2024-rc7-2024-12-03'
+```
+
+run qemu command instead of just dumping it
+```
+$ virt-qemu-cmd --run 'dsl-2024-rc7-2024-12-03'
+```
+

@@ -20,7 +20,7 @@ function error_exit()
 function usage_exit()
 {
 	cat 1>&2 <<- EOU
-		usage: $ME [ --help | --no-validate | --run ] domain-name | domain-config-file
+		usage: $ME [ --help | --no-validate | --run ] <domain-name> | <libvirt-domain-config-file>
 	EOU
 	exit $ERROR_USAGE
 }
@@ -57,7 +57,8 @@ done
 echo $1
 
 # check required xsltproc
-type -p xsltproc 1>/dev/null 2>&1 || error_exit "xsltproc command not found" $ERROR_CMD_NOT_FOUND
+type -p xsltproc 1>/dev/null 2>&1 \
+	|| error_exit "xsltproc command not found" $ERROR_CMD_NOT_FOUND
 
 # check stylesheet
 stylesheet="$HOME/.config/${ME%.*}.xsl"
