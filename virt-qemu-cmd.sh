@@ -29,22 +29,33 @@ function usage_exit()
 do_validate=true
 do_run=false
 
+# run or create (with defaults) my config file
+rc="${HOME}/.config/${ME%.*}.rc"
+if [[ -f "$rc" ]]; then
+	source $rc
+else
+	cat >> "$rc" <<- EOF
+		do_validate=$do_validate
+		do_run=$do_run
+	EOF
+fi
+
 # evaluate command line options
-VALID_ARGS=$(getopt -o hnr --long help,no-validate,run -- "$@")
+VALID_ARGS=$(getopt -o hnrx --long exec,help,no-validate,run -- "$@")
 if [[ $? != 0 ]]; then
     usage_exit;
 fi
 eval set -- "$VALID_ARGS"
 while [ : ]; do
 	case "$1" in
-		-h | --help )
+		-h | --help | -help )
 			usage_exit
 		;;
-		-n | --no-validate )
+		-n | --no-validate | -no-validate )
 			do_validate=false
 			shift 1
 		;;
-		-r | --run )
+		-r | --run | -run | -x | --exec | -exec )
 			do_run=true
 			shift 1
 		;;
@@ -54,14 +65,17 @@ while [ : ]; do
 			;;
 	esac
 done
-echo $1
+# single - can not be handled via getopt. remove from @ (reading from stdin is default if no other argument is given)
+if [[ $1 == '-' ]]; then
+	shift 1
+fi
 
 # check required xsltproc
 type -p xsltproc 1>/dev/null 2>&1 \
 	|| error_exit "xsltproc command not found" $ERROR_CMD_NOT_FOUND
 
-# check stylesheet
-stylesheet="$HOME/.config/${ME%.*}.xsl"
+# check stylesheet (note: sudo will change to root home)
+stylesheet="${HOME}/.local/share/${ME%.*}.xsl"
 test -f "$stylesheet" \
 	|| error_exit "stylesheet file not found: $stylesheet" $ERROR_INTERNAL
 

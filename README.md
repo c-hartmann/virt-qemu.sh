@@ -13,9 +13,9 @@ $ cp virt-qemu-cmd.sh $HOME/.local/bin/virt-qemu-cmd
 $ chmod +x $HOME/.local/bin/virt-qemu
 # either copy or link the stylesheet..
 # copy:
-$ cp config/virt-qemu-cmd.xsl $HOME/.config/
+$ cp config/virt-qemu-cmd.xsl $HOME/.local/share/
 # link:
-$ CD=$PWD; cd $HOME/.config/; ln -s "$CD/config/virt-qemu-cmd.xsl" .; cd -
+$ CD=$PWD; cd $HOME/.local/share/ ; ln -s "$CD/config/virt-qemu-cmd.xsl" . ; cd -
 ```
 
 ## basic usage
@@ -40,7 +40,7 @@ $ virt-qemu-cmd "$HOME/.config/libvirt/qemu/dsl-2024-rc7.xml"
 
 with partial domain name (first matching)
 ```
-$ virt-qemu-cmd 'dsl-2024-rc7-'
+$ virt-qemu-cmd 'dsl-'
 ```
 
 piping xml file to command
@@ -61,5 +61,15 @@ $ virt-qemu-cmd --no-validate 'dsl-2024-rc7'
 run qemu command instead of just dumping it
 ```
 $ virt-qemu-cmd --run 'dsl-2024-rc7'
+```
+
+create command from system session / connection
+```
+$ sudo virsh dumpxml 'dsl-2024-rc7' | virt-qemu-cmd -
+```
+
+running from system session / connection likely failes due to unsufficent rights
+```
+$ sudo virsh dumpxml 'dsl-2024-rc7' | virt-qemu-cmd --run
 ```
 
