@@ -26,16 +26,16 @@ $ virt-qemu-cmd [ --help | --no-validate | --run ] <domain-name> | <libvirt-doma
 
 ## example usages
 
-assuming domain name is: 'dsl-2024-rc7-2024-12-03'
+assuming domain name is: 'dsl-2024-rc7'
 
 with full domain name
 ```
-$ virt-qemu-cmd 'dsl-2024-rc7-2024-12-03'
+$ virt-qemu-cmd 'dsl-2024-rc7'
 ```
 
 with (user session) xml path
 ```
-$ virt-qemu-cmd "$HOME/.config/libvirt/qemu/dsl-2024-rc7-2024-12-03.xml"
+$ virt-qemu-cmd "$HOME/.config/libvirt/qemu/dsl-2024-rc7.xml"
 ```
 
 with partial domain name (first matching)
@@ -45,21 +45,21 @@ $ virt-qemu-cmd 'dsl-2024-rc7-'
 
 piping xml file to command
 ```
-$ cat "$HOME/.config/libvirt/qemu/dsl-2024-rc7-2024-12-03.xml" | virt-qemu-cmd
+$ cat "$HOME/.config/libvirt/qemu/dsl-2024-rc7.xml" | virt-qemu-cmd
 ```
 
 using virsh dumpxml command and the domain name to pipe into command:
 ```
-$ virsh dumpxml 'dsl-2024-rc7-2024-12-03' | virt-qemu-cmd
+$ virsh dumpxml 'dsl-2024-rc7' | virt-qemu-cmd
 ```
 
 do not validate domain xml config file before parsing
 ```
-$ virt-qemu-cmd --no-validate 'dsl-2024-rc7-2024-12-03'
+$ virt-qemu-cmd --no-validate 'dsl-2024-rc7'
 ```
 
 run qemu command instead of just dumping it
 ```
-$ virt-qemu-cmd --run 'dsl-2024-rc7-2024-12-03'
+$ virt-qemu-cmd --run 'dsl-2024-rc7'
 ```
 
